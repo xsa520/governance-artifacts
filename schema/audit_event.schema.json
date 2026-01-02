@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AuditEvent",
+  "description": "An immutable record of a governance-relevant event captured for audit purposes.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "timestamp",
+    "event_type",
+    "related_decision_id",
+    "actor_type",
+    "event_status",
+    "recorded_by",
+    "immutable"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Globally unique identifier for the audit event."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time at which the event was recorded."
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "STATE_THRESHOLD_BREACH",
+        "OVERRIDE_ATTEMPT",
+        "GOVERNANCE_CHECK_TRIGGERED",
+        "ACTION_SUPPRESSED",
+        "SCOPE_VALIDATION_FAILED"
+      ],
+      "description": "Category of governance-relevant event."
+    },
+    "related_decision_id": {
+      "type": "string",
+      "description": "Reference to the associated governance decision, if applicable."
+    },
+    "actor_type": {
+      "type": "string",
+      "enum": [
+        "SYSTEM",
+        "HUMAN_OPERATOR",
+        "CREATOR"
+      ],
+      "description": "Entity responsible for triggering the event."
+    },
+    "event_status": {
+      "type": "string",
+      "enum": [
+        "RECORDED",
+        "BLOCKED",
+        "IGNORED"
+      ],
+      "description": "Final status of the event."
+    },
+    "recorded_by": {
+      "type": "string",
+      "description": "Governance or audit layer responsible for recording this event."
+    },
+    "immutable": {
+      "type": "boolean",
+      "const": true,
+      "description": "Indicates that this audit event cannot be altered or removed."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional context. No justification, mitigation, or outcome assessment allowed."
+    }
+  },
+  "additionalProperties": false
+}
