@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GovernanceDecision",
+  "description": "An immutable record of a governance-level decision that restricts behavior.",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "timestamp",
+    "decision_type",
+    "action_requested",
+    "action_status",
+    "blocking_authority",
+    "irreversible",
+    "audit_reference"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "description": "Globally unique identifier for this decision event."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time at which the decision was finalized."
+    },
+    "decision_type": {
+      "type": "string",
+      "enum": [
+        "RISK_INCREASE_BLOCKED",
+        "OVERRIDE_ATTEMPT_RECORDED",
+        "BEHAVIOR_SUPPRESSED",
+        "SCOPE_OUT_OF_BOUNDS"
+      ],
+      "description": "Category of governance decision."
+    },
+    "action_requested": {
+      "type": "string",
+      "description": "High-level description of the action that was requested."
+    },
+    "action_status": {
+      "type": "string",
+      "enum": [
+        "DENIED",
+        "SUPPRESSED",
+        "OUT_OF_SCOPE"
+      ],
+      "description": "Final status of the requested action."
+    },
+    "blocking_authority": {
+      "type": "string",
+      "description": "The governance layer or rule that blocked the action."
+    },
+    "irreversible": {
+      "type": "boolean",
+      "const": true,
+      "description": "Indicates that this decision cannot be reversed or overridden."
+    },
+    "audit_reference": {
+      "type": "string",
+      "description": "Reference to an immutable audit trail or ledger entry."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional contextual notes. No justification or outcome evaluation allowed."
+    }
+  },
+  "additionalProperties": false
+}
