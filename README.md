@@ -79,3 +79,7 @@ been enforced and preserved here as artifacts.
 
 No roadmap is provided.
 No expansion is promised.
+## Boundary Reference
+
+For scope limits, non-goals, and explicit exclusions, see  
+[BOUNDARIES.md](BOUNDARIES.md).
